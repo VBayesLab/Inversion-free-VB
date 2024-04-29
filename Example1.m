@@ -57,7 +57,7 @@ S = 10; % the number of Monte Carlo samples to estimate Fisher
 alpha_stepsize = 0.8; % use in the step size
 niter = 100000;iter = 1;
 stop = false;
-H_inverse = 0.01*eye(d_lambda);
+H_inverse = eye(d_lambda);
 H_inverse_scale = 0; % to count the number of samples in estimating inverse Fisher
 MSE_IFVB = 0;
 while ~stop    
@@ -103,7 +103,7 @@ sum_AIFVB = 0;
 
 niter = 100000;iter = 1;
 stop = false;
-H_inverse = 0.01*eye(d_lambda);
+H_inverse = eye(d_lambda);
 H_inverse_scale = 0;
 MSE_AIFVB = 0;
 while ~stop    
@@ -155,16 +155,5 @@ legend('IFVB','AIFVB')
 xlabel('Iteration');
 ylabel('MSE');
 
-
-figure(2)
-x = 0:.01:1;
-yy_VB = betapdf(x,lambda1(1),lambda1(2));
-yy_NGVB = betapdf(x,lambda_NGVB(1),lambda_NGVB(2));
-yy_IFVB = betapdf(x,lambda_IFVB(1),lambda_IFVB(2));
-yy_AIFVB = betapdf(x,lambda_AIFVB(1),lambda_AIFVB(2));
-yy_exact = betapdf(x,y+1,n-y+1);
-plot(x,yy_exact,'-',x,yy_VB,'-',x,yy_NGVB,'-',x,yy_IFVB,'-',x,yy_AIFVB,'-','LineWidth',3);
-h_legend = legend('Exact','Ordinary gradient','NGVB','IFVB','AIFVB'); 
-set(h_legend,'FontSize',16)
 
 
